@@ -37,5 +37,14 @@ namespace MoqDemo
             var orderDtos = filteredDtos.OrderBy(a => a.Name);
             return orderDtos;
         }
+
+        public bool IsVip(string id)
+        {
+            if (string.IsNullOrWhiteSpace(id)) return false;
+            var dto = _dataBaseContext.GetElementById(id);
+            if (dto.Name.Contains("sto")) return true;
+            return false;
+        }
+
     }
 }

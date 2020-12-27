@@ -48,5 +48,15 @@ namespace MoqDemo.Tests
 
             Assert.IsNotNull(dto);
         }
+
+        [TestMethod]
+        public void ShouldReturn_True_If_Id_Is_9527()
+        {
+            var moq = new Mock<IDataBaseContext<MyDto>>();
+            moq.Setup(a => a.GetElementById(It.Is<string>(t => t.Trim() == "9527"))).Returns(new MyDto { Name = "sto", Age = 24 });
+            MyBll bll = new MyBll(moq.Object);
+            bool isVip = bll.IsVip("9527");
+            Assert.IsTrue(isVip);
+        }
     }
 }
