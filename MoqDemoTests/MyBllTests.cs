@@ -25,8 +25,16 @@ namespace MoqDemo.Tests
         public void ShouldReturn_A_Collection_Of_Dtos()
         {
             var moq = new Mock<IDataBaseContext<MyDto>>();
+            moq.Setup(a => a.GetAll()).Returns(new List<MyDto>
+            {
+                new MyDto{Name="baidu",Age=15},
+                new MyDto{Name="sto",Age=32},
+                new MyDto{Name="zto",Age=24},
+                new MyDto{Name="yto",Age=12}
+            });
             MyBll bll = new MyBll(moq.Object);
-            var dtos = bll.GetDtos("sto");
+            var dtos = bll.GetAllDtos().ToList();
+            Assert.AreEqual<int>(2, dtos.Count);
         }
     }
 }

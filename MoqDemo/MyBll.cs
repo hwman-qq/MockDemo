@@ -27,5 +27,15 @@ namespace MoqDemo
             var dtos = _dataBaseContext.GetElementsByName(name);
             return dtos;
         }
+
+        public IEnumerable<MyDto> GetAllDtos()
+        {
+            var all = _dataBaseContext.GetAll().ToList();
+            if (!all.Any()) return Enumerable.Empty<MyDto>();
+            //一系列逻辑...
+            var filteredDtos = all.Where(a => a.Age > 20);
+            var orderDtos = filteredDtos.OrderBy(a => a.Name);
+            return orderDtos;
+        }
     }
 }
