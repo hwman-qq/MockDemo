@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MoqDemo
 {
-    interface IDataBaseContext<out T> where T : new()
+    public interface IDataBaseContext<out T> where T : new()
     {
         T GetElementById(string id);
         IEnumerable<T> GetAll();

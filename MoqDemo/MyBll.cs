@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MoqDemo
 {
-    class MyBll
+    public class MyBll
     {
         private readonly IDataBaseContext<MyDto> _dataBaseContext;
 

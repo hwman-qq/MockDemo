@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MoqDemo
 {
-    class MyDto
+    public class MyDto
     {
         public string Name { get; set; }
         public int Age { get; set; }
