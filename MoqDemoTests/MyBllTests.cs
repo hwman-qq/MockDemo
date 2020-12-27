@@ -58,5 +58,21 @@ namespace MoqDemo.Tests
             bool isVip = bll.IsVip("9527");
             Assert.IsTrue(isVip);
         }
+
+        [TestMethod]
+        public void MockOf_Test()
+        {
+            var obj = Mock.Of<IDataBaseContext<MyDto>>(a => a.GetAll() == new List<MyDto>() { new MyDto() }
+                                                           && a.GetElementById(It.IsAny<string>()) == new MyDto()
+                                                           && a.GetElementsByName(It.IsAny<string>()) == new MyDto[3]);
+
+            var all = obj.GetAll();
+            var one = obj.GetElementById("s");
+            var some = obj.GetElementsByName("somename");
+
+            Assert.AreEqual(1, all.Count());
+            Assert.IsNotNull(one);
+            Assert.AreEqual(3, some.Count());
+        }
     }
 }
