@@ -20,5 +20,12 @@ namespace MoqDemo
             if (string.IsNullOrWhiteSpace(id)) return null;
             return _dataBaseContext.GetElementById(id);
         }
+
+        public IEnumerable<MyDto> GetDtos(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name)) return null;
+            var dtos = _dataBaseContext.GetElementsByName(name);
+            return dtos;
+        }
     }
 }

@@ -20,5 +20,13 @@ namespace MoqDemo.Tests
             var result = bll.GetADto(null);
             Assert.IsNull(result);
         }
+
+        [TestMethod()]
+        public void ShouldReturn_A_Collection_Of_Dtos()
+        {
+            var moq = new Mock<IDataBaseContext<MyDto>>();
+            MyBll bll = new MyBll(moq.Object);
+            var dtos = bll.GetDtos("sto");
+        }
     }
 }
