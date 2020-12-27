@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using MoqDemo;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,12 @@ namespace MoqDemo.Tests
     public class MyBllTests
     {
         [TestMethod()]
-        public void GetADtoTest()
+        public void SimpleTest()
         {
-            Assert.Fail();
+            var moq = new Mock<IDataBaseContext<MyDto>>();
+            MyBll bll = new MyBll(moq.Object);
+            var result = bll.GetADto(null);
+            Assert.IsNull(result);
         }
     }
 }
