@@ -36,5 +36,17 @@ namespace MoqDemo.Tests
             var dtos = bll.GetAllDtos().ToList();
             Assert.AreEqual<int>(2, dtos.Count);
         }
+
+        [TestMethod()]
+        public void ShouldReturn_A_Dto_If_QueryBy_Id_With_Valid_Parameter()
+        {
+            var moq = new Mock<IDataBaseContext<MyDto>>();
+            moq.Setup(a => a.GetElementById(It.IsAny<string>())).Returns(new MyDto());
+
+            MyBll bll = new MyBll(moq.Object);
+            var dto = bll.GetADto("afakeid");
+
+            Assert.IsNotNull(dto);
+        }
     }
 }
